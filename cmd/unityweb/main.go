@@ -46,7 +46,7 @@ func main() {
 	app := &cli.App{
 		Name:    "unityweb",
 		Usage:   "A tool for unpacking and repacking Unity Web data files.",
-		Version: "1.0.1",
+		Version: "1.0.2",
 		Commands: []*cli.Command{
 			{
 				Name:    "unpack",
