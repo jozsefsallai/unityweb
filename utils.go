@@ -14,13 +14,13 @@ func uint32LEToBytes(i uint32) []byte {
 	return []byte{byte(i), byte(i >> 8), byte(i >> 16), byte(i >> 24)}
 }
 
-func mkdirAllForFile(filepath string) error {
-	slashIndex := strings.LastIndex(filepath, "/")
+func mkdirAllForFile(fp string) error {
+	slashIndex := strings.LastIndex(fp, string(os.PathSeparator))
 	if slashIndex == -1 {
 		return nil
 	}
 
-	return os.MkdirAll(filepath[:slashIndex], 0755)
+	return os.MkdirAll(fp[:slashIndex], 0755)
 }
 
 func listFilesRecursively(p string) ([]string, error) {
@@ -35,7 +35,7 @@ func listFilesRecursively(p string) ([]string, error) {
 			return nil
 		}
 
-		pathWithoutBase := strings.TrimPrefix(path, p+"/")
+		pathWithoutBase := strings.TrimPrefix(path, p+string(os.PathSeparator))
 		paths = append(paths, pathWithoutBase)
 		return nil
 	})

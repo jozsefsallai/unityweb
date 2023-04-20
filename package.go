@@ -3,7 +3,7 @@ package unityweb
 import (
 	"fmt"
 	"os"
-	"path"
+	"path/filepath"
 )
 
 const (
@@ -127,7 +127,7 @@ func (p *Package) ReadFromPackageFile(file *os.File) error {
 // if there are file I/O errors (such as permission errors).
 func (p *Package) Dump(outputDirectoryPath string) error {
 	for i := range p.Files {
-		fullpath := path.Join(outputDirectoryPath, string(p.FileMetadata[i].Filename))
+		fullpath := filepath.Join(outputDirectoryPath, string(p.FileMetadata[i].Filename))
 		if err := p.Files[i].Dump(fullpath); err != nil {
 			return err
 		}
